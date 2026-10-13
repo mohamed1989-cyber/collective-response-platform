@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+  .dark {
+    color-scheme: dark;
+  }
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    @apply font-sans text-slate-700 bg-gov-bg dark:bg-[#070f1d] dark:text-slate-200 antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    @apply font-display;
+  }
+  ::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 dark:bg-slate-700 rounded-full;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-400 dark:bg-slate-600;
+  }
+  ::selection {
+    @apply bg-navy-800 text-white;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-card;
+  }
+  .card-hover {
+    @apply transition-all duration-200 hover:shadow-card-hover hover:-translate-y-[2px];
+  }
+  .gov-table {
+    @apply w-full text-sm border-collapse;
+  }
+  .gov-table thead th {
+    @apply bg-slate-50 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 font-bold px-4 py-3 text-right border-b border-slate-200 dark:border-slate-700 whitespace-nowrap;
+  }
+  .gov-table tbody td {
+    @apply px-4 py-3 border-b border-slate-100 dark:border-slate-800 text-slate-600 dark:text-slate-300 align-middle;
+  }
+  .gov-table tbody tr {
+    @apply transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/40;
+  }
+  .gov-table tbody tr:last-child td {
+    @apply border-b-0;
+  }
+  .input {
+    @apply w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/70 px-3.5 py-2.5 text-sm text-slate-700 dark:text-slate-200 placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none transition-all focus:border-navy-500 focus:ring-2 focus:ring-navy-500/20;
+  }
+  .select {
+    @apply input appearance-none pe-9;
+  }
+  .textarea {
+    @apply input min-h-[96px] resize-y;
+  }
+  .field-label {
+    @apply block text-sm font-bold text-slate-600 dark:text-slate-300 mb-1.5;
+  }
+  .nav-link {
+    @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-slate-300/90 hover:bg-white/10 hover:text-white transition-all duration-200;
+  }
+  .nav-link-active {
+    @apply bg-white/15 text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)];
+  }
+  .icon-box {
+    @apply flex items-center justify-center rounded-xl shrink-0;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-bold;
+  }
+  .divider {
+    @apply h-px bg-slate-200 dark:bg-slate-800;
+  }
+}
+
+@layer utilities {
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .text-shadow-sm {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  }
+}
+
+/* Leaflet: keep map internals LTR regardless of document direction */
+.leaflet-container,
+.leaflet-pane,
+.leaflet-control {
+  direction: ltr;
+  font-family: 'Cairo', sans-serif;
+}
+.leaflet-popup-content-wrapper {
+  @apply rounded-xl shadow-card-hover border border-slate-200 dark:border-slate-700;
+  font-family: 'Cairo', sans-serif;
+}
+.leaflet-popup-content {
+  margin: 10px 14px;
+  text-align: right;
+}
+.leaflet-bar a {
+  @apply bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700;
+}
+
+/* Pulsing ring for critical map markers (used by MapView divIcon HTML) */
+@keyframes crp-ping {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+.crp-divicon {
+  background: transparent;
+  border: none;
+}
